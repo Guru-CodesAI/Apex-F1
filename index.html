@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX F1 — The Ultimate Formula 1 Blog</title>
+  <meta name="description" content="APEX F1 is your premier destination for Formula 1 news, race analysis, driver profiles, and championship standings. Experience the thrill of motorsport." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring">
+        <svg viewBox="0 0 100 100" width="100" height="100">
+          <circle cx="50" cy="50" r="45" stroke="rgba(255,255,255,0.05)" stroke-width="4" fill="none"/>
+          <circle cx="50" cy="50" r="45" stroke="url(#pre-grad)" stroke-width="4" fill="none" 
+                 stroke-dasharray="283" stroke-dashoffset="283" class="preloader-circle" stroke-linecap="round"/>
+          <circle cx="50" cy="50" r="30" stroke="rgba(255,255,255,0.03)" stroke-width="2" fill="none"/>
+          <circle cx="50" cy="50" r="30" stroke="url(#pre-grad)" stroke-width="2" fill="none"
+                 stroke-dasharray="188" stroke-dashoffset="188" class="preloader-circle-inner" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="pre-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e10600"/>
+              <stop offset="50%" stop-color="#ff6b35"/>
+              <stop offset="100%" stop-color="#ffd700"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="preloader-text">
+        <span class="preloader-label">APEX</span>
+        <span class="preloader-sublabel">F1</span>
+      </div>
+      <div class="preloader-counter" id="preloader-counter">0</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="nav-logo">
+        <span class="logo-apex">APEX</span>
+        <span class="logo-f1">F1</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#hero" class="nav-link active" data-section="hero">Home</a>
+        <a href="#latest-races" class="nav-link" data-section="latest-races">Races</a>
+        <a href="#drivers" class="nav-link" data-section="drivers">Drivers</a>
+        <a href="#standings" class="nav-link" data-section="standings">Standings</a>
+        <a href="#articles" class="nav-link" data-section="articles">Articles</a>
+        <a href="#calendar" class="nav-link" data-section="calendar">Calendar</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </div>
+    <div class="nav-progress">
+      <div class="nav-progress-bar" id="scroll-progress"></div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-bg"></div>
+    <div class="mobile-menu-content">
+      <a href="#hero" class="mobile-link">Home</a>
+      <a href="#latest-races" class="mobile-link">Races</a>
+      <a href="#drivers" class="mobile-link">Drivers</a>
+      <a href="#standings" class="mobile-link">Standings</a>
+      <a href="#articles" class="mobile-link">Articles</a>
+      <a href="#calendar" class="mobile-link">Calendar</a>
+    </div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+    <!-- =============== HERO SECTION =============== -->
+    <section id="hero" class="section hero-section">
+      <!-- YouTube Background Video -->
+      <div class="hero-video-bg" id="hero-video-bg">
+        <iframe 
+          class="hero-yt-video active"
+          src="https://www.youtube.com/embed/bj84VmFmQoE?autoplay=1&mute=1&loop=1&playlist=bj84VmFmQoE&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd720"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          title="F1 Cinematic Background"
+        ></iframe>
+        <div class="video-color-overlay"></div>
+      </div>
+      
+      <!-- Canvas speed lines -->
+      <canvas id="speed-canvas" class="hero-speed-canvas"></canvas>
+      
+      <div class="hero-overlay"></div>
+      <div class="hero-particles" id="hero-particles"></div>
+      <div class="hero-grid-lines"></div>
+
+      <div class="hero-content" id="hero-content">
+        <div class="hero-badge" id="hero-badge">
+          <span class="badge-dot"></span>
+          <span>SEASON 2026 — LIVE</span>
+        </div>
+        <h1 class="hero-title" id="hero-title">
+          <div class="title-line-wrap"><span class="title-line" id="title-1">FULL</span></div>
+          <div class="title-line-wrap"><span class="title-line accent" id="title-2">THROTTLE</span></div>
+          <div class="title-line-wrap"><span class="title-line" id="title-3">RACING</span></div>
+        </h1>
+        <p class="hero-subtitle" id="hero-subtitle">The pulse of Formula 1. Breaking news, in-depth race analysis, driver insights, and the stories that define the fastest sport on Earth.</p>
+        <div class="hero-cta" id="hero-cta">
+          <a href="#latest-races" class="btn btn-primary" id="hero-btn-races">
+            <span class="btn-text">Latest Races</span>
+            <span class="btn-icon">→</span>
+            <span class="btn-shine"></span>
+          </a>
+          <a href="#articles" class="btn btn-outline" id="hero-btn-articles">
+            <span class="btn-text">Read Articles</span>
+            <span class="btn-glow"></span>
+          </a>
+        </div>
+        <div class="hero-stats" id="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number" data-target="24">0</span>
+            <span class="stat-label">Races</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="20">0</span>
+            <span class="stat-label">Drivers</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="10">0</span>
+            <span class="stat-label">Teams</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="370">0</span>
+            <span class="stat-label">KM/H Top Speed</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-scroll-indicator" id="scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>SCROLL TO EXPLORE</span>
+      </div>
+
+      <!-- SVG Track Line -->
+      <svg class="hero-track-svg" id="hero-track-svg" viewBox="0 0 1200 200" preserveAspectRatio="none">
+        <path id="track-line" d="M0,100 Q200,20 400,100 T800,100 T1200,100" fill="none" stroke="url(#track-grad)" stroke-width="2" stroke-dasharray="1200" stroke-dashoffset="1200"/>
+        <defs>
+          <linearGradient id="track-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#e10600"/>
+            <stop offset="50%" stop-color="#ff6b35"/>
+            <stop offset="100%" stop-color="#ffd700"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </section>
+
+    <!-- =============== CINEMATIC TRANSITION =============== -->
+    <div class="section-transition" id="transition-1">
+      <div class="transition-line"></div>
+      <div class="transition-text">RACE WEEK</div>
+      <div class="transition-line"></div>
+    </div>
+
+    <!-- =============== LATEST RACES =============== -->
+    <section id="latest-races" class="section races-section">
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">RECENT RESULTS</span>
+        <h2 class="section-title" data-animate="title">LATEST <span class="accent">RACES</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="races-grid" id="races-grid">
+        <article class="race-card" id="race-card-1">
+          <div class="race-card-image">
+            <img src="/images/race-start.png" alt="Australian Grand Prix" loading="lazy"/>
+            <div class="race-card-overlay">
+              <span class="race-round">R01</span>
+            </div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="race-card-content">
+            <div class="race-meta">
+              <span class="race-date">Mar 16, 2026</span>
+              <span class="race-flag">🇦🇺</span>
+            </div>
+            <h3 class="race-name">Australian Grand Prix</h3>
+            <p class="race-circuit">Albert Park Circuit, Melbourne</p>
+            <div class="race-podium">
+              <div class="podium-item"><span class="podium-pos">P1</span><span class="podium-driver">VER</span></div>
+              <div class="podium-item"><span class="podium-pos">P2</span><span class="podium-driver">NOR</span></div>
+              <div class="podium-item"><span class="podium-pos">P3</span><span class="podium-driver">LEC</span></div>
+            </div>
+            <a href="#" class="race-link">Full Results <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="race-card" id="race-card-2">
+          <div class="race-card-image">
+            <img src="/images/circuit-aerial.png" alt="Bahrain Grand Prix" loading="lazy"/>
+            <div class="race-card-overlay"><span class="race-round">R02</span></div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="race-card-content">
+            <div class="race-meta">
+              <span class="race-date">Mar 30, 2026</span>
+              <span class="race-flag">🇧🇭</span>
+            </div>
+            <h3 class="race-name">Bahrain Grand Prix</h3>
+            <p class="race-circuit">Bahrain International Circuit, Sakhir</p>
+            <div class="race-podium">
+              <div class="podium-item"><span class="podium-pos">P1</span><span class="podium-driver">HAM</span></div>
+              <div class="podium-item"><span class="podium-pos">P2</span><span class="podium-driver">VER</span></div>
+              <div class="podium-item"><span class="podium-pos">P3</span><span class="podium-driver">SAI</span></div>
+            </div>
+            <a href="#" class="race-link">Full Results <span class="arrow">→</span></a>
+          </div>
+        </article>
+        <article class="race-card" id="race-card-3">
+          <div class="race-card-image">
+            <img src="/images/pit-stop.png" alt="Japanese Grand Prix" loading="lazy"/>
+            <div class="race-card-overlay"><span class="race-round">R03</span></div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="race-card-content">
+            <div class="race-meta">
+              <span class="race-date">Apr 6, 2026</span>
+              <span class="race-flag">🇯🇵</span>
+            </div>
+            <h3 class="race-name">Japanese Grand Prix</h3>
+            <p class="race-circuit">Suzuka International Racing Course</p>
+            <div class="race-podium">
+              <div class="podium-item"><span class="podium-pos">P1</span><span class="podium-driver">NOR</span></div>
+              <div class="podium-item"><span class="podium-pos">P2</span><span class="podium-driver">PIA</span></div>
+              <div class="podium-item"><span class="podium-pos">P3</span><span class="podium-driver">VER</span></div>
+            </div>
+            <a href="#" class="race-link">Full Results <span class="arrow">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =============== PINNED VIDEO + DRIVERS =============== -->
+    <section id="drivers" class="section drivers-section">
+      <!-- Background Video for Drivers -->
+      <div class="section-video-bg">
+        <iframe 
+          class="drivers-yt-video active"
+          src="https://www.youtube.com/embed/Uti-V4oXwFw?autoplay=1&mute=1&loop=1&playlist=Uti-V4oXwFw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd720"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          title="F1 Drivers Background 1"
+        ></iframe>
+        <iframe 
+          class="drivers-yt-video"
+          src="https://www.youtube.com/embed/Mq8Ceb1U3Ww?autoplay=1&mute=1&loop=1&playlist=Mq8Ceb1U3Ww&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&vq=hd720"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          title="F1 Drivers Background 2"
+        ></iframe>
+        <div class="video-color-overlay dark"></div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">THE GRID</span>
+        <h2 class="section-title" data-animate="title">FEATURED <span class="accent">DRIVERS</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="drivers-showcase" id="drivers-showcase">
+        <div class="driver-card" id="driver-1">
+          <div class="driver-number">1</div>
+          <div class="driver-image-wrap">
+            <img src="/images/driver-portrait.png" alt="Max Verstappen" loading="lazy"/>
+            <div class="driver-glow"></div>
+          </div>
+          <div class="driver-info">
+            <span class="driver-team red-bull">Red Bull Racing</span>
+            <h3 class="driver-name">
+              <span class="first-name">Max</span>
+              <span class="last-name">VERSTAPPEN</span>
+            </h3>
+            <div class="driver-stats-row">
+              <div class="d-stat"><span class="d-stat-val">63</span><span class="d-stat-label">Wins</span></div>
+              <div class="d-stat"><span class="d-stat-val">4</span><span class="d-stat-label">Titles</span></div>
+              <div class="d-stat"><span class="d-stat-val">40</span><span class="d-stat-label">Poles</span></div>
+            </div>
+          </div>
+          <div class="card-shine"></div>
+        </div>
+        <div class="driver-card" id="driver-2">
+          <div class="driver-number">44</div>
+          <div class="driver-image-wrap">
+            <img src="/images/driver-portrait.png" alt="Lewis Hamilton" loading="lazy"/>
+            <div class="driver-glow ferrari"></div>
+          </div>
+          <div class="driver-info">
+            <span class="driver-team ferrari-team">Scuderia Ferrari</span>
+            <h3 class="driver-name">
+              <span class="first-name">Lewis</span>
+              <span class="last-name">HAMILTON</span>
+            </h3>
+            <div class="driver-stats-row">
+              <div class="d-stat"><span class="d-stat-val">104</span><span class="d-stat-label">Wins</span></div>
+              <div class="d-stat"><span class="d-stat-val">7</span><span class="d-stat-label">Titles</span></div>
+              <div class="d-stat"><span class="d-stat-val">104</span><span class="d-stat-label">Poles</span></div>
+            </div>
+          </div>
+          <div class="card-shine"></div>
+        </div>
+        <div class="driver-card" id="driver-3">
+          <div class="driver-number">4</div>
+          <div class="driver-image-wrap">
+            <img src="/images/driver-portrait.png" alt="Lando Norris" loading="lazy"/>
+            <div class="driver-glow mclaren"></div>
+          </div>
+          <div class="driver-info">
+            <span class="driver-team mclaren-team">McLaren F1 Team</span>
+            <h3 class="driver-name">
+              <span class="first-name">Lando</span>
+              <span class="last-name">NORRIS</span>
+            </h3>
+            <div class="driver-stats-row">
+              <div class="d-stat"><span class="d-stat-val">8</span><span class="d-stat-label">Wins</span></div>
+              <div class="d-stat"><span class="d-stat-val">0</span><span class="d-stat-label">Titles</span></div>
+              <div class="d-stat"><span class="d-stat-val">12</span><span class="d-stat-label">Poles</span></div>
+            </div>
+          </div>
+          <div class="card-shine"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== CINEMATIC TRANSITION 2 =============== -->
+    <div class="section-transition" id="transition-2">
+      <div class="transition-line"></div>
+      <div class="transition-text">CHAMPIONSHIP</div>
+      <div class="transition-line"></div>
+    </div>
+
+    <!-- =============== CHAMPIONSHIP STANDINGS =============== -->
+    <section id="standings" class="section standings-section">
+      <div class="standings-bg"></div>
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">2026 CHAMPIONSHIP</span>
+        <h2 class="section-title" data-animate="title">DRIVER <span class="accent">STANDINGS</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="standings-container" id="standings-container">
+        <div class="standings-table">
+          <div class="standings-row header-row">
+            <span class="s-pos">POS</span>
+            <span class="s-driver">DRIVER</span>
+            <span class="s-team">TEAM</span>
+            <span class="s-points">PTS</span>
+            <span class="s-bar"></span>
+          </div>
+          <div class="standings-row" data-pos="1">
+            <span class="s-pos gold">1</span>
+            <span class="s-driver">Max Verstappen</span>
+            <span class="s-team"><span class="team-color" style="background:#3671C6"></span>Red Bull</span>
+            <span class="s-points">69</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="100"></div></div>
+          </div>
+          <div class="standings-row" data-pos="2">
+            <span class="s-pos silver">2</span>
+            <span class="s-driver">Lando Norris</span>
+            <span class="s-team"><span class="team-color" style="background:#FF8000"></span>McLaren</span>
+            <span class="s-points">57</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="standings-row" data-pos="3">
+            <span class="s-pos bronze">3</span>
+            <span class="s-driver">Lewis Hamilton</span>
+            <span class="s-team"><span class="team-color" style="background:#E8002D"></span>Ferrari</span>
+            <span class="s-points">52</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="standings-row" data-pos="4">
+            <span class="s-pos">4</span>
+            <span class="s-driver">Charles Leclerc</span>
+            <span class="s-team"><span class="team-color" style="background:#E8002D"></span>Ferrari</span>
+            <span class="s-points">48</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="69"></div></div>
+          </div>
+          <div class="standings-row" data-pos="5">
+            <span class="s-pos">5</span>
+            <span class="s-driver">Oscar Piastri</span>
+            <span class="s-team"><span class="team-color" style="background:#FF8000"></span>McLaren</span>
+            <span class="s-points">43</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="62"></div></div>
+          </div>
+          <div class="standings-row" data-pos="6">
+            <span class="s-pos">6</span>
+            <span class="s-driver">Carlos Sainz</span>
+            <span class="s-team"><span class="team-color" style="background:#64C4FF"></span>Williams</span>
+            <span class="s-points">35</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="50"></div></div>
+          </div>
+          <div class="standings-row" data-pos="7">
+            <span class="s-pos">7</span>
+            <span class="s-driver">George Russell</span>
+            <span class="s-team"><span class="team-color" style="background:#27F4D2"></span>Mercedes</span>
+            <span class="s-points">31</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="45"></div></div>
+          </div>
+          <div class="standings-row" data-pos="8">
+            <span class="s-pos">8</span>
+            <span class="s-driver">Andrea Kimi Antonelli</span>
+            <span class="s-team"><span class="team-color" style="background:#27F4D2"></span>Mercedes</span>
+            <span class="s-points">26</span>
+            <div class="s-bar"><div class="s-bar-fill" data-width="37"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== HORIZONTAL SCROLL GALLERY =============== -->
+    <section id="gallery" class="section gallery-section">
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">GALLERY</span>
+        <h2 class="section-title" data-animate="title">RACE <span class="accent">MOMENTS</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="gallery-track-wrapper">
+        <div class="gallery-track" id="gallery-track">
+          <div class="gallery-item"><img src="/images/hero-race.png" alt="Race moment 1"/><span class="gallery-caption">Lights Out</span></div>
+          <div class="gallery-item"><img src="/images/race-start.png" alt="Race moment 2"/><span class="gallery-caption">Grid Start</span></div>
+          <div class="gallery-item"><img src="/images/pit-stop.png" alt="Race moment 3"/><span class="gallery-caption">Pit Strategy</span></div>
+          <div class="gallery-item"><img src="/images/circuit-aerial.png" alt="Race moment 4"/><span class="gallery-caption">Aerial View</span></div>
+          <div class="gallery-item"><img src="/images/podium.png" alt="Race moment 5"/><span class="gallery-caption">Victory</span></div>
+          <div class="gallery-item"><img src="/images/driver-portrait.png" alt="Race moment 6"/><span class="gallery-caption">Focus</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== ARTICLES / BLOG POSTS =============== -->
+    <section id="articles" class="section articles-section">
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">INSIGHTS & ANALYSIS</span>
+        <h2 class="section-title" data-animate="title">LATEST <span class="accent">ARTICLES</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="articles-grid" id="articles-grid">
+        <article class="article-card featured" id="article-1">
+          <div class="article-image">
+            <img src="/images/hero-race.png" alt="2026 Season Preview" loading="lazy"/>
+            <div class="article-category">Analysis</div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-date">Mar 19, 2026</span>
+              <span class="article-read">8 min read</span>
+            </div>
+            <h3 class="article-title">2026 Season Preview: New Regulations, New Era</h3>
+            <p class="article-excerpt">The 2026 season brings the most radical regulation changes in a decade. From overhauled power units to redesigned aerodynamics, here's everything you need to know.</p>
+            <a href="#" class="article-link">Read More <span class="link-arrow">→</span></a>
+          </div>
+        </article>
+        <article class="article-card" id="article-2">
+          <div class="article-image">
+            <img src="/images/podium.png" alt="Hamilton's Ferrari Move" loading="lazy"/>
+            <div class="article-category">Feature</div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-date">Mar 17, 2026</span>
+              <span class="article-read">6 min read</span>
+            </div>
+            <h3 class="article-title">Hamilton at Ferrari: The Dream Realized</h3>
+            <p class="article-excerpt">After months of speculation, Lewis Hamilton finally dons the scarlet overalls. How his first races have reshaped the championship.</p>
+            <a href="#" class="article-link">Read More <span class="link-arrow">→</span></a>
+          </div>
+        </article>
+        <article class="article-card" id="article-3">
+          <div class="article-image">
+            <img src="/images/pit-stop.png" alt="Pit Stop Revolution" loading="lazy"/>
+            <div class="article-category">Technical</div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-date">Mar 15, 2026</span>
+              <span class="article-read">5 min read</span>
+            </div>
+            <h3 class="article-title">The Pit Stop Revolution: Sub-2 Second Changes</h3>
+            <p class="article-excerpt">How teams are pushing the boundaries of human performance and engineering precision to achieve record-breaking pit stop times.</p>
+            <a href="#" class="article-link">Read More <span class="link-arrow">→</span></a>
+          </div>
+        </article>
+        <article class="article-card" id="article-4">
+          <div class="article-image">
+            <img src="/images/circuit-aerial.png" alt="Circuit Guide" loading="lazy"/>
+            <div class="article-category">Guide</div>
+            <div class="card-shine"></div>
+          </div>
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-date">Mar 12, 2026</span>
+              <span class="article-read">10 min read</span>
+            </div>
+            <h3 class="article-title">Circuit Masterclass: The Art of the Perfect Lap</h3>
+            <p class="article-excerpt">We break down the key corners, DRS zones, and overtaking hotspots of the most challenging circuits on the 2026 calendar.</p>
+            <a href="#" class="article-link">Read More <span class="link-arrow">→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =============== RACE CALENDAR =============== -->
+    <section id="calendar" class="section calendar-section">
+      <div class="section-header">
+        <span class="section-tag" data-animate="tag">UPCOMING</span>
+        <h2 class="section-title" data-animate="title">RACE <span class="accent">CALENDAR</span></h2>
+        <div class="title-underline" data-animate="line"></div>
+      </div>
+      <div class="next-race-widget" id="next-race-widget">
+        <div class="nrw-header"><span class="nrw-label">NEXT RACE</span><span class="nrw-flag">🇨🇳</span></div>
+        <h3 class="nrw-name">Chinese Grand Prix</h3>
+        <p class="nrw-circuit">Shanghai International Circuit</p>
+        <div class="countdown" id="countdown">
+          <div class="countdown-item"><span class="cd-number" id="cd-days">00</span><span class="cd-label">DAYS</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span class="cd-number" id="cd-hours">00</span><span class="cd-label">HRS</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span class="cd-number" id="cd-mins">00</span><span class="cd-label">MIN</span></div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item"><span class="cd-number" id="cd-secs">00</span><span class="cd-label">SEC</span></div>
+        </div>
+        <div class="nrw-gauge">
+          <svg viewBox="0 0 120 70" width="200">
+            <path d="M10,65 A50,50 0 0,1 110,65" fill="none" stroke="#1a1a2e" stroke-width="8" stroke-linecap="round"/>
+            <path id="gauge-needle" d="M10,65 A50,50 0 0,1 110,65" fill="none" stroke="url(#gauge-grad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157"/>
+            <defs>
+              <linearGradient id="gauge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00ff88"/>
+                <stop offset="50%" stop-color="#ffd700"/>
+                <stop offset="100%" stop-color="#e10600"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="calendar-list" id="calendar-list">
+        <div class="cal-item completed" id="cal-1"><div class="cal-round">R01</div><div class="cal-info"><span class="cal-name">Australian Grand Prix</span><span class="cal-date">Mar 16</span></div><span class="cal-flag">🇦🇺</span><span class="cal-status">✓</span></div>
+        <div class="cal-item completed" id="cal-2"><div class="cal-round">R02</div><div class="cal-info"><span class="cal-name">Bahrain Grand Prix</span><span class="cal-date">Mar 30</span></div><span class="cal-flag">🇧🇭</span><span class="cal-status">✓</span></div>
+        <div class="cal-item completed" id="cal-3"><div class="cal-round">R03</div><div class="cal-info"><span class="cal-name">Japanese Grand Prix</span><span class="cal-date">Apr 6</span></div><span class="cal-flag">🇯🇵</span><span class="cal-status">✓</span></div>
+        <div class="cal-item next" id="cal-4"><div class="cal-round">R04</div><div class="cal-info"><span class="cal-name">Chinese Grand Prix</span><span class="cal-date">Apr 20</span></div><span class="cal-flag">🇨🇳</span><span class="cal-status live">NEXT</span></div>
+        <div class="cal-item" id="cal-5"><div class="cal-round">R05</div><div class="cal-info"><span class="cal-name">Miami Grand Prix</span><span class="cal-date">May 4</span></div><span class="cal-flag">🇺🇸</span><span class="cal-status upcoming">—</span></div>
+        <div class="cal-item" id="cal-6"><div class="cal-round">R06</div><div class="cal-info"><span class="cal-name">Emilia Romagna Grand Prix</span><span class="cal-date">May 18</span></div><span class="cal-flag">🇮🇹</span><span class="cal-status upcoming">—</span></div>
+        <div class="cal-item" id="cal-7"><div class="cal-round">R07</div><div class="cal-info"><span class="cal-name">Monaco Grand Prix</span><span class="cal-date">May 25</span></div><span class="cal-flag">🇲🇨</span><span class="cal-status upcoming">—</span></div>
+        <div class="cal-item" id="cal-8"><div class="cal-round">R08</div><div class="cal-info"><span class="cal-name">Spanish Grand Prix</span><span class="cal-date">Jun 1</span></div><span class="cal-flag">🇪🇸</span><span class="cal-status upcoming">—</span></div>
+      </div>
+    </section>
+
+    <!-- =============== NEWSLETTER =============== -->
+    <section id="newsletter" class="section newsletter-section">
+      <div class="newsletter-bg"></div>
+      <div class="newsletter-content" id="newsletter-content">
+        <div class="newsletter-icon">
+          <svg viewBox="0 0 60 60" width="60" height="60">
+            <rect x="5" y="15" width="50" height="35" rx="3" fill="none" stroke="#e10600" stroke-width="2"/>
+            <polyline points="5,15 30,35 55,15" fill="none" stroke="#e10600" stroke-width="2"/>
+          </svg>
+        </div>
+        <h2 class="newsletter-title">STAY ON <span class="accent">TRACK</span></h2>
+        <p class="newsletter-desc">Get the latest F1 news, race results, and exclusive analysis delivered straight to your inbox every race weekend.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <div class="form-group">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" id="newsletter-email" required/>
+            <button type="submit" class="btn btn-primary newsletter-btn" id="newsletter-submit">
+              <span class="btn-text">Subscribe</span>
+              <span class="btn-icon">→</span>
+              <span class="btn-shine"></span>
+            </button>
+          </div>
+        </form>
+        <p class="newsletter-note">Join 50,000+ race fans. No spam, just speed.</p>
+      </div>
+    </section>
+
+    <!-- =============== FOOTER =============== -->
+    <footer id="footer" class="footer-section">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><span class="logo-apex">APEX</span><span class="logo-f1">F1</span></div>
+          <p class="footer-tagline">The pulse of Formula 1. Breaking barriers, breaking records.</p>
+        </div>
+        <div class="footer-col"><h4>Racing</h4><a href="#">Race Results</a><a href="#">Standings</a><a href="#">Schedule</a><a href="#">Circuits</a></div>
+        <div class="footer-col"><h4>Content</h4><a href="#">Articles</a><a href="#">Analysis</a><a href="#">Interviews</a><a href="#">Podcast</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="#">Twitter / X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Discord</a></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-checkered"></div>
+        <p>© 2026 APEX F1. All rights reserved. Not affiliated with Formula 1.</p>
+      </div>
+    </footer>
+
+    </div><!-- /smooth-content -->
+  </div><!-- /smooth-wrapper -->
+
+  <!-- Cursor Follower -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
